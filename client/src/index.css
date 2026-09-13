@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+@theme {
+    /* Fonts */
+  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Border tokens -> border-action, border-error, etc. */
+  --color-border-action-hover: var(--border-action-hover);
+  --color-border-action: var(--border-action);
+  --color-border-default: var(--border-default);
+  --color-border-disabled: var(--border-disabled);
+  --color-border-error: var(--border-error);
+  --color-border-focus: var(--border-focus);
+  --color-border-information: var(--border-information);
+  --color-border-success: var(--border-success);
+  --color-border-warning: var(--border-warning);
+
+  /* Icon tokens -> text-icons-body, text-icons-action, etc. */
+  --color-icons-action-hover: var(--icons-action-hover);
+  --color-icons-action: var(--icons-action);
+  --color-icons-body: var(--icons-body);
+  --color-icons-disabled: var(--icons-disabled);
+  --color-icons-error: var(--icons-error);
+  --color-icons-headings: var(--icons-headings);
+  --color-icons-information: var(--icons-information);
+  --color-icons-on-action: var(--icons-on-action);
+  --color-icons-success: var(--icons-success);
+  --color-icons-warning: var(--icons-warning);
+
+  /* Surface tokens -> bg-surface-page, bg-surface-default, etc. */
+  --color-surface-action-hover-light: var(--surface-action-hover-light);
+  --color-surface-action-hover: var(--surface-action-hover);
+  --color-surface-action-hover-secondary: var(--surface-action-hover-secondary);
+  --color-surface-action-secondary: var(--surface-action-secondary);
+  --color-surface-action: var(--surface-action);
+  --color-surface-default: var(--surface-default);
+  --color-surface-disabled: var(--surface-disabled);
+  --color-surface-error: var(--surface-error);
+  --color-surface-information: var(--surface-information);
+  --color-surface-page: var(--surface-page);
+  --color-surface-success: var(--surface-success);
+  --color-surface-warning: var(--surface-warning);
+
+  /* Text tokens -> text-body, text-headings, etc. */
+  --color-text-action-hover: var(--text-action-hover);
+  --color-text-action: var(--text-action);
+  --color-text-body: var(--text-body);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-error: var(--text-error);
+  --color-text-headings: var(--text-headings);
+  --color-text-information: var(--text-information);
+  --color-text-on-action: var(--text-on-action);
+  --color-text-success: var(--text-success);
+  --color-text-warning: var(--text-warning);
+
+  /* Registers text-h1 through text-h6 with automatic line heights */
+  --text-h1: var(--font-size-h1);
+  --text-h1--line-height: var(--line-height-h1);
+
+  --text-h2: var(--font-size-h2);
+  --text-h2--line-height: var(--line-height-h2);
+
+  --text-h3: var(--font-size-h3);
+  --text-h3--line-height: var(--line-height-h3);
+
+  --text-h4: var(--font-size-h4);
+  --text-h4--line-height: var(--line-height-h4);
+
+  --text-h5: var(--font-size-h5);
+  --text-h5--line-height: var(--line-height-h5);
+
+  --text-h6: var(--font-size-h6);
+  --text-h6--line-height: var(--line-height-h6);
+
+  /* Registers text-p-lg, text-p-md, etc. */
+  --text-p-lg: var(--font-size-p-lg);
+  --text-p-lg--line-height: var(--line-height-p-lg);
+
+  --text-p-md: var(--font-size-p-md);
+  --text-p-md--line-height: var(--line-height-p-md);
+
+  --text-p-sm: var(--font-size-p-sm);
+  --text-p-sm--line-height: var(--line-height-p-sm);
+
+  --text-p-xsm: var(--font-size-p-xsm);
+  --text-p-xsm--line-height: var(--line-height-p-xsm);
+
+  /* Spacing utilities for paragraph spacing (e.g., mb-h1, mb-p) */
+  --spacing-h1: var(--spacing-h1-bottom);
+  --spacing-h2: var(--spacing-h2-bottom);
+  --spacing-h3: var(--spacing-h3-bottom);
+  --spacing-h4: var(--spacing-h4-bottom);
+  --spacing-h5: var(--spacing-h5-bottom);
+  --spacing-h6: var(--spacing-h6-bottom);
+  --spacing-p: var(--spacing-p-bottom);
+}
+
+/* 2. Custom Typography Utilities (Outside @theme) */
+@utility h1 {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-h1, 3rem);
+  line-height: var(--line-height-h1, 1.1667);
+  font-weight: 700;
+}
+
+@utility h2 {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-h2, 2.5rem);
+  line-height: var(--line-height-h2, 1.2);
+  font-weight: 700;
+}
+
+@utility h3 {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-h3, 2rem);
+  line-height: var(--line-height-h3, 1.25);
+  font-weight: 600;
+}
+
+@utility h4 {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-h4, 1.75rem);
+  line-height: var(--line-height-h4, 1.1429);
+  font-weight: 600;
+}
+
+@utility h5 {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-h5, 1.5rem);
+  line-height: var(--line-height-h5, 1.1667);
+  font-weight: 600;
+}
+
+@utility h6 {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-h6, 1.25rem);
+  line-height: var(--line-height-h6, 1.2);
+  font-weight: 600;
+}
+
+@utility body-xsm {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-xsm, 0.75rem);
+  line-height: var(--line-height-p-xsm, 1.1667);
+  font-weight: 400;
+}
+
+@utility body-xsm-semi-bold {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-xsm, 0.75rem);
+  line-height: var(--line-height-p-xsm, 1.1667);
+  font-weight: 600;
+}
+
+@utility body-xsm-link {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-xsm, 0.75rem);
+  line-height: var(--line-height-p-xsm, 1.1667);
+  font-weight: 400;
+  text-decoration-line: underline;
+}
+
+@utility body-sm {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-sm, 0.875rem);
+  line-height: var(--line-height-p-sm, 1.1429);
+  font-weight: 400;
+}
+
+@utility body-sm-semi-bold {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-sm, 0.875rem);
+  line-height: var(--line-height-p-sm, 1.1429);
+  font-weight: 600;
+}
+
+@utility body-sm-link {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-sm, 0.875rem);
+  line-height: var(--line-height-p-sm, 1.1429);
+  font-weight: 400;
+  text-decoration-line: underline;
+}
+
+@utility body-md {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-md, 1rem);
+  line-height: var(--line-height-p-md, 1.25);
+  font-weight: 400;
+}
+
+@utility body-md-semi-bold {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-md, 1rem);
+  line-height: var(--line-height-p-md, 1.25);
+  font-weight: 600;
+}
+
+@utility body-md-link {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-md, 1rem);
+  line-height: var(--line-height-p-md, 1.25);
+  font-weight: 400;
+  text-decoration-line: underline;
+}
+
+@utility body-lg {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-lg, 1.25rem);
+  line-height: var(--line-height-p-lg, 1.2);
+  font-weight: 400;
+}
+
+@utility body-lg-semi-bold {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-lg, 1.25rem);
+  line-height: var(--line-height-p-lg, 1.2);
+  font-weight: 600;
+}
+
+@utility body-lg-link {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-p-lg, 1.25rem);
+  line-height: var(--line-height-p-lg, 1.2);
+  font-weight: 400;
+  text-decoration-line: underline;
+}
