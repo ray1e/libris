@@ -68,6 +68,21 @@
   --brand-yellow-900: #231b00;
   --brand-yellow-950: #171000;
 
+  --brand-scale-0: 0rem;           /* 0px */
+  --brand-scale-25: 0.0625rem;     /* 1px */
+  --brand-scale-50: 0.125rem;      /* 2px */
+  --brand-scale-100: 0.25rem;      /* 4px */
+  --brand-scale-200: 0.5rem;       /* 8px */
+  --brand-scale-300: 0.75rem;      /* 12px */
+  --brand-scale-400: 1rem;         /* 16px */
+  --brand-scale-500: 1.25rem;      /* 20px */
+  --brand-scale-600: 1.5rem;       /* 24px */
+  --brand-scale-700: 1.75rem;      /* 28px */
+  --brand-scale-800: 2rem;         /* 32px */
+  --brand-scale-900: 2.5rem;       /* 40px */
+  --brand-scale-1000: 3rem;        /* 48px */
+  --brand-scale-1100: 4rem;        /* 64px */
+
   --alias-error-50: var(--brand-red-50);
   --alias-error-100: var(--brand-red-100);
   --alias-error-200: var(--brand-red-200);
@@ -136,6 +151,7 @@
   --alias-warning-900: var(--brand-yellow-900);
   --alias-warning-950: var(--brand-yellow-950);
   --alias-warning-default: var(--brand-yellow-400);
+
 }
 
 :root {

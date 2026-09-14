@@ -1,8 +1,19 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
 
+:root {
+  /*border radius and width utilities*/
+  --alias-border-width-none: var(--brand-scale-0);
+  --alias-border-width-sm: var(--brand-scale-25);
+  --alias-border-width-md: var(--brand-scale-50);
+  --alias-border-width-lg: var(--brand-scale-100);
+  --alias-border-radius-none: var(--brand-scale-0);
+  --alias-border-radius-sm: var(--brand-scale-50);
+  --alias-border-radius-md: var(--brand-scale-100);
+  --alias-border-radius-lg: var(--brand-scale-200);
+}
 @theme {
-    /* Fonts */
+  /* Fonts */
   --font-inter: "Inter", system-ui, -apple-system, sans-serif;
 
   /* Border tokens -> border-action, border-error, etc. */
@@ -53,6 +64,18 @@
   --color-text-on-action: var(--text-on-action);
   --color-text-success: var(--text-success);
   --color-text-warning: var(--text-warning);
+
+  /* Border Widths -> border-none, border-sm, border-md, border-lg */
+  --border-width-none: var(--alias-border-width-none);
+  --border-width-sm: var(--alias-border-width-sm);
+  --border-width-md: var(--alias-border-width-md);
+  --border-width-lg: var(--alias-border-width-lg);
+
+  /* Border Radii -> rounded-none, rounded-sm, rounded-md, rounded-lg */
+  --radius-none: var(--alias-border-radius-none);
+  --radius-sm: var(--alias-border-radius-sm);
+  --radius-md: var(--alias-border-radius-md);
+  --radius-lg: var(--alias-border-radius-lg);
 
   /* Registers text-h1 through text-h6 with automatic line heights */
   --text-h1: var(--font-size-h1);
