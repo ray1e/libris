@@ -13,13 +13,15 @@ export const buttonVariants = cva("button", {
         "rounded-lg inline-flex text-text-action active:text-text-action-hover justify-center items-center",
       navigation:
         "rounded-lg inline-flex text-text-action active:text-text-action-hover justify-center items-center",
+      iconOnly:
+        "inline-flex text-text-action active:text-text-action-hover justify-center items-center",
     },
     isSelected: {
       true: "",
       false: "",
     },
     size: {
-      sm: "h-9 px-3 gap-1.5 body-sm-semi-bold",
+      sm: "h-9 px-1.5 gap-1.5 body-sm-semi-bold",
       md: "h-10 px-4 gap-2 body-md-semi-bold",
       lg: "h-12 px-6 gap-2.5 body-lg-semi-bold",
     },

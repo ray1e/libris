@@ -8,7 +8,8 @@ export function Button({
   isSelected = false,
   leftIcon,
   rightIcon,
-  children,
+  icon,
+  label,
   ...props
 }) {
   return (
@@ -17,13 +18,18 @@ export function Button({
       {...props}
     >
       {leftIcon && (
-        <span className="size-6 p-0.5 flex justify-center items-center gap-2.5">
+        <span className="size-4 py-0.5 flex justify-center items-center gap-2.5">
           {leftIcon}
         </span>
       )}
-      <span className="body-sm-semi-bold justify-start">{children}</span>
+      {icon && (
+        <span className="py-0.5 inline-flex justify-center items-center gap-2.5">
+          {icon}
+        </span>
+      )}
+      <span className="body-sm-semi-bold justify-start">{label}</span>
       {rightIcon && (
-        <span className="size-6 p-0.5 flex justify-center items-center gap-2.5">
+        <span className="size-4 py-0.5 flex justify-center items-center gap-2.5">
           {rightIcon}
         </span>
       )}
