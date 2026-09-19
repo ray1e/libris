@@ -1,7 +1,12 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
 
-
+body {
+  background-color: var(--color-surface-default);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
 
 :root {
   /*border radius and width utilities*/

@@ -22,7 +22,7 @@ export function StarRating({
 
   return (
     <div
-      className="inline-flex items-center gap-1"
+      className="inline-flex items-center gap-3"
       onMouseLeave={() => !readOnly && setHoverRating(0)}
     >
       {Array.from({ length: maxStars }, (_, index) => {
@@ -44,11 +44,11 @@ export function StarRating({
           >
             <Star
               className={cn(
-                " transition-colors",
+                " transition-colors ",
                 sizeMap[size],
                 isFilled
                   ? "fill-amber-400 text-amber-400"
-                  : "fill-transparent text-slate-300",
+                  : "fill-transparent text-slate-400",
               )}
             />
           </button>

@@ -4,8 +4,8 @@ import { StarRating } from "./StarRating.jsx";
 export function RatingBadge({
   ratingValue,
   onRatingChange,
-  ratingReadOnly,
-  ratingSize,
+  ratingReadOnly, /*true or false */
+  ratingSize, /*"sm", "md", "lg" */
   labelText,
   showRatingLabel=true,
   maxRatingStars,

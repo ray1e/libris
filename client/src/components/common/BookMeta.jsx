@@ -9,12 +9,12 @@ const sizeMap = {
   md: {
     title: "body-md-semi-bold items-center justify-start ",
     author: "body-sm items-center justify-start",
-    gap: "gap-0.5",
+    gap: "gap-1.5",
   },
   lg: {
     title: "body-lg-semi-bold items-center justify-start ",
     author: "body-md items-center justify-start",
-    gap: "gap-0.5",
+    gap: "gap-2.5",
   },
 };
 

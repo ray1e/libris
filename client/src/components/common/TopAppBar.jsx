@@ -1,10 +1,10 @@
 import { PageTitle } from "./PageTitle.jsx";
 
-export function TopAppBar({ title, actionsLeft, actionsRight }) {
+export function TopAppBar({ title, actionsLeft, actionsRight}) {
   return (
-    <div className="w-96 bg-surface-page inline-flex justify-between items-center">
+    <div className="w-full bg-surface-page inline-flex justify-between items-center">
       {/* left group */}
-      <div className="inline-flex justify-start items-center gap-6">
+      <div className="inline-flex justify-start items-center gap-4">
         {actionsLeft && (
           <div className="inline-flex justify-end items-start gap-1">
             {actionsLeft}

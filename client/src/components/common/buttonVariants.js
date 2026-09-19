@@ -4,17 +4,17 @@ export const buttonVariants = cva("button", {
   variants: {
     variant: {
       primary:
-        "bg-surface-action text-text-on-action active:bg-surface-action-hover rounded-lg inline-flex justify-center items-center",
+        "shrink-0 bg-surface-action text-text-on-action active:bg-surface-action-hover rounded-lg inline-flex justify-center items-center",
       secondary:
-        "bg-surface-action-secondary text-text-on-action active:bg-surface-action-hover-secondary rounded-lg inline-flex justify-center items-center",
+        "shrink-0 bg-surface-action-secondary text-text-on-action active:bg-surface-action-hover-secondary rounded-lg inline-flex justify-center items-center",
       filter:
-        "rounded-lg text-text-action outline outline-1 outline-offset-[-1px] outline-Border-action inline-flex justify-center items-center",
+        "shrink-0 rounded-lg text-text-action outline outline-1 outline-offset-[-1px] outline-Border-action inline-flex justify-center items-center",
       notHighlited:
-        "rounded-lg inline-flex text-text-action active:text-text-action-hover justify-center items-center",
+        "shrink-0 rounded-lg inline-flex text-text-action active:text-text-action-hover justify-center items-center",
       navigation:
-        "rounded-lg inline-flex text-text-action active:text-text-action-hover justify-center items-center",
+        "shrink-0 rounded-lg inline-flex text-text-action active:text-text-action-hover justify-center items-center",
       iconOnly:
-        "inline-flex text-text-action active:text-text-action-hover justify-center items-center",
+        "shrink-0 inline-flex text-text-action active:text-text-action-hover justify-center items-center",
     },
     isSelected: {
       true: "",
