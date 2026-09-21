@@ -7,6 +7,7 @@ export function BookInfo({ book, rating, tag, className }) {
   const bookTitle = book?.title ?? "";
   const bookAuthors = book?.authors ?? "";
   const bookMetaSize = book?.metaSize ?? "md"; /*"sm", "md", "lg"*/
+  const readStatus = book?.readStatus ?? "";
   const metaClassName = book?.metaClassName ?? "";
   //const readStatus = book?.status ?? "to-read"; /*reading, completed*/ 
 
@@ -26,7 +27,7 @@ export function BookInfo({ book, rating, tag, className }) {
         size={bookMetaSize}
         className={metaClassName}
       />
-      <RatingBadge
+      {readStatus !== "to-read" && <RatingBadge
         ratingValue={ratingValue}
         onRatingChange={onRatingChange}
         ratingReadOnly={ratingReadOnly}
@@ -35,7 +36,7 @@ export function BookInfo({ book, rating, tag, className }) {
         showRatingLabel={true}
         maxRatingStars={maxRatingStars}
         fieldLabelSize={fieldLabelSize}
-      />
+      />}
       {/*<ReadStatusTag readStatus={readStatus} />*/}
       {tag}
     </div>

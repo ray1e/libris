@@ -66,15 +66,20 @@ export function Dashboard() {
         {data?.success &&
           data.data.map((currentBook) => (
             <BookCard
-            key={currentBook._id}
+              key={currentBook._id}
               book={{
                 title: currentBook.title,
                 authors: currentBook.authors,
                 metaSize: "sm",
+                readStatus: currentBook.readStatus,
               }}
-              rating={{ value: currentBook?.rating, readOnly: true, size: "sm" }}
+              rating={{
+                value: currentBook?.rating,
+                readOnly: true,
+                size: "sm",
+              }}
               imageLink="https://picsum.photos/id/1/300/400"
-              bookTag={<ReadStatusTag />}
+              bookTag={<ReadStatusTag readStatus={currentBook.readStatus}/>}
             />
           ))}
       </main>
