@@ -6,24 +6,30 @@ import { SideMenu } from "../components/common/SideMenu.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { useState } from "react";
 import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
+//import { fetchAllBooks } from "../services/api.js";
+import { useGetAllBooksQuery } from "../services/api.js";
 
 export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const { data, error, isLoading, isSuccess } = useGetAllBooksQuery();
+  console.log(data);
   return (
     <div className="relative overflow-hidden h-full w-full flex flex-col gap-3 px-4">
       {/*side menu*/}
 
-      <SideMenu
-        isOpen={sideMenuOpen}
-        onClose={() => setSideMenuOpen(false)}
-      />
+      <SideMenu isOpen={sideMenuOpen} onClose={() => setSideMenuOpen(false)} />
 
       {/*Header-section */}
       <div className="pt-2 shrink-0 pb-1">
         <TopAppBar
           title="My Books"
           actionsLeft={
-            <Button variant="iconOnly" icon={<Menu />} className="px-0" onClick={() => setSideMenuOpen(true) }/>
+            <Button
+              variant="iconOnly"
+              icon={<Menu />}
+              className="px-0"
+              onClick={() => setSideMenuOpen(true)}
+            />
           }
           actionsRight={
             <Button
@@ -57,56 +63,20 @@ export function Dashboard() {
       </div>
       {/*Main-section */}
       <main className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 gap-4 scrollbar-thumb-surface-action-secondary scrollbar-thin md:scrollbar-thin scroll-ml-1">
-        <BookCard
-          book={{
-            title: "Atomic Habits",
-            authors: "Cal Newport",
-            metaSize: "sm",
-          }}
-          rating={{ value: 5, readOnly: true, size: "sm" }}
-          imageLink="https://picsum.photos/id/1/300/400"
-          bookTag={<ReadStatusTag/>}
-        />
-        <BookCard
-          book={{
-            title: "Atomic Habits",
-            authors: "Cal Newport",
-            metaSize: "sm",
-          }}
-          rating={{ value: 5, readOnly: true, size: "sm" }}
-          imageLink="https://picsum.photos/id/31/300/400"
-          bookTag={<ReadStatusTag/>}
-        />
-        <BookCard
-          book={{
-            title: "Atomic Habits",
-            authors: "Cal Newport",
-            metaSize: "sm",
-          }}
-          rating={{ value: 5, readOnly: true, size: "sm" }}
-          imageLink="https://picsum.photos/id/14/300/400"
-          bookTag={<ReadStatusTag/>}
-        />
-        <BookCard
-          book={{
-            title: "Atomic Habits",
-            authors: "Cal Newport",
-            metaSize: "sm",
-          }}
-          rating={{ value: 5, readOnly: true, size: "sm" }}
-          imageLink="https://picsum.photos/id/55/300/400"
-          bookTag={<ReadStatusTag/>}
-        />
-        <BookCard
-          book={{
-            title: "Atomic Habits",
-            authors: "Cal Newport",
-            metaSize: "sm",
-          }}
-          rating={{ value: 5, readOnly: true, size: "sm" }}
-          imageLink="https://picsum.photos/id/61/300/400"
-          bookTag={<ReadStatusTag/>}
-        />
+        {data?.success &&
+          data.data.map((currentBook) => (
+            <BookCard
+            key={currentBook._id}
+              book={{
+                title: currentBook.title,
+                authors: currentBook.authors,
+                metaSize: "sm",
+              }}
+              rating={{ value: currentBook?.rating, readOnly: true, size: "sm" }}
+              imageLink="https://picsum.photos/id/1/300/400"
+              bookTag={<ReadStatusTag />}
+            />
+          ))}
       </main>
     </div>
   );
