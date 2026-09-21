@@ -4,11 +4,18 @@ import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/error.middleware.js";
 import { setServers } from "node:dns/promises";
 import bookRouter from "./routes/books.route.js";
+import cors from "cors";
 
 //override windows DNS server for succesful mongo URI resolution
 setServers(["1.1.1.1", "8.8.8.8"]);
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
 
 app.use(express.json());
 
