@@ -7,7 +7,7 @@ import { InputBox } from "../components/common/InputBox.jsx";
 import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
 import { SideMenu } from "../components/common/SideMenu.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
-import { useGetAllBooksQuery } from "../services/api.js";
+import { useGetAllBooksQuery } from "../services/booksApi.js";
 
 export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);

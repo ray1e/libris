@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { BookInfo } from "../components/common/BookInfo.jsx";
 import { Button } from "../components/common/Button.jsx";
 import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
@@ -5,6 +6,7 @@ import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { ChevronLeft, Ellipse, Ellipsis } from "lucide-react";
 
 export function BookView() {
+  const navigate = useNavigate();
   return (
     <div className=" relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
       {/*Header-section*/}
@@ -15,6 +17,7 @@ export function BookView() {
               variant="navigation"
               label="Back"
               leftIcon={<ChevronLeft />}
+              onClick={() => navigate("/")}
             />
           }
           actionsRight={
