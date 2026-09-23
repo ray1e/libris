@@ -22,7 +22,7 @@ export function StarRating({
 
   return (
     <div
-      className="inline-flex items-center gap-3"
+      className="inline-flex items-center gap-x-3"
       onMouseLeave={() => !readOnly && setHoverRating(0)}
     >
       {Array.from({ length: maxStars }, (_, index) => {
