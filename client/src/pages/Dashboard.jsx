@@ -13,17 +13,23 @@ export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { data, error, isLoading, isSuccess } = useGetAllBooksQuery();
+  const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredData = (data?.data ?? []).filter((bookData) => {
     const matchTitle = bookData.title
       ?.trim().toLowerCase()
-      .includes(search.toLowerCase());
+      .includes(search.trim().toLowerCase());
       console.log(`Title returned ${matchTitle}`)
     const matchAuthor = bookData.authors?.some((author) => {
-      return author.trim().toLowerCase().includes(search.toLowerCase());
+      return author.trim().toLowerCase().includes(search.trim().toLowerCase());
     });
     return matchTitle || matchAuthor;
-  });
+  }).filter((filteredBook) => {
+    return(
+      activeFilter === "All" ||
+      filteredBook.readStatus === activeFilter
+    )
+  })
 
   console.log(data);
   const navigate = useNavigate();
@@ -74,11 +80,33 @@ export function Dashboard() {
           <Button variant="secondary" label="Filter" leftIcon={<Funnel />} />
         </div>
         {/*filter bar */}
-        <div className="flex justify-between items-center">
-          <Button variant="filter" label="All" className="px-3" />
-          <Button variant="filter" label="Reading" />
-          <Button variant="filter" label="Want to Read" />
-          <Button variant="filter" label="Completed" />
+        <div className="flex justify-around items-center">
+          <Button 
+          variant="filter" 
+          isSelected={activeFilter === "All"} 
+          onClick={() => setActiveFilter("All")}
+          label="All" 
+          className="px-3"
+           />
+
+          <Button 
+          variant="filter" 
+          isSelected={activeFilter === "reading"}
+          onClick={() => setActiveFilter("reading")}
+          label="reading" />
+
+          <Button 
+          variant="filter" 
+          label="to-read"
+          isSelected={activeFilter === "to-read"}
+          onClick={() => setActiveFilter("to-read")} />
+
+          <Button 
+          variant="filter" 
+          label="finished"
+          isSelected={activeFilter === "finished"} 
+          onClick={() => setActiveFilter("finished")}/>
+          
         </div>
       </div>
       {/*Main-section */}
