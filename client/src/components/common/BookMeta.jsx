@@ -22,10 +22,18 @@ const sizeMap = {
 
 export function BookMeta({ bookTitle, bookAuthors, className, size = "md" /*sm, lg */ }) {
   const styles = sizeMap[size] || sizeMap.md;
+  const authors = Array.isArray(bookAuthors)
+    ? bookAuthors.join(", ")
+    : bookAuthors;
+
   return (
-    <div className={cn("inline-flex flex-col", styles.gap, className )}>
-      <span className={cn("pb-1.5",styles.title, className)}>{bookTitle}</span>
-      <span className={cn(styles.author, className)}>{bookAuthors}</span>
+    <div className={cn("inline-flex min-w-0 flex-col", styles.gap, className)}>
+      <span className={cn("line-clamp-2 pb-1.5", styles.title)}>
+        {bookTitle}
+      </span>
+      <span className={cn("line-clamp-1", styles.author)}>
+        {authors}
+      </span>
     </div>
   );
 }
