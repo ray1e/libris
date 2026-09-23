@@ -1,29 +1,35 @@
 import { Funnel, Menu, Plus, Search } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BookCard } from "../components/common/BookCard.jsx";
 import { Button } from "../components/common/Button.jsx";
 import { InputBox } from "../components/common/InputBox.jsx";
+import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
 import { SideMenu } from "../components/common/SideMenu.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
-import { useState } from "react";
-import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
 import { useGetAllBooksQuery } from "../services/api.js";
-import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-  const [search, setSeaarch] = useState("");
+  const [search, setSearch] = useState("");
   const { data, error, isLoading, isSuccess } = useGetAllBooksQuery();
 
-  const filteredData = (data?.data ?? []).filter((bookData) =>
-    bookData.title.toLowerCase().includes(search.toLowerCase()),
-  );
-  console.log(`this is ${filteredData}`);
+  const filteredData = (data?.data ?? []).filter((bookData) => {
+    const matchTitle = bookData.title
+      ?.trim().toLowerCase()
+      .includes(search.toLowerCase());
+      console.log(`Title returned ${matchTitle}`)
+    const matchAuthor = bookData.authors?.some((author) => {
+      return author.trim().toLowerCase().includes(search.toLowerCase());
+    });
+    return matchTitle || matchAuthor;
+  });
 
   console.log(data);
   const navigate = useNavigate();
 
   const handleInputOnChange = (event) => {
-    setSeaarch(event.target.value);
+    setSearch(event.target.value);
   };
   return (
     <div className="relative overflow-hidden h-full w-full flex flex-col gap-3 px-4">
