@@ -9,7 +9,7 @@ export function BookInfo({ book, rating, tag, className }) {
   const bookMetaSize = book?.metaSize ?? "md"; /*"sm", "md", "lg"*/
   const readStatus = book?.readStatus ?? "";
   const metaClassName = book?.metaClassName ?? "";
-  //const readStatus = book?.status ?? "to-read"; /*reading, completed*/ 
+  //const readStatus = book?.status ?? "to-read"; /*reading, completed*/
 
   const ratingBadgeLabel = rating?.label;
   const ratingValue = rating?.value ?? 0;
@@ -20,23 +20,34 @@ export function BookInfo({ book, rating, tag, className }) {
   const fieldLabelSize = rating?.fieldLabelSize ?? "sm"; /*"sm", "md", "lg"*/
 
   return (
-    <div className={cn("inline-flex flex-col justify-start items-start gap-1.5", className)}>
+    <div
+      className={cn(
+        "inline-flex min-w-0 min-h-0 flex-col justify-start items-start gap-1.5",
+        className,
+      )}
+    >
       <BookMeta
         bookTitle={bookTitle}
         bookAuthors={bookAuthors}
         size={bookMetaSize}
-        className={metaClassName}
+        className={cn("min-w-0",metaClassName)}
       />
-      {readStatus !== "to-read" && <RatingBadge
-        ratingValue={ratingValue}
-        onRatingChange={onRatingChange}
-        ratingReadOnly={ratingReadOnly}
-        ratingSize={ratingSize}
-        labelText={ratingBadgeLabel}
-        showRatingLabel={true}
-        maxRatingStars={maxRatingStars}
-        fieldLabelSize={fieldLabelSize}
-      />}
+      {readStatus === "to-read" ? (
+        <span className="inline-flex body-xsm italic py-0.5 h-6.5 text-text-disabled items-center justify-center">
+          Not rated yet
+        </span>
+      ) : (
+        <RatingBadge
+          ratingValue={ratingValue}
+          onRatingChange={onRatingChange}
+          ratingReadOnly={ratingReadOnly}
+          ratingSize={ratingSize}
+          labelText={ratingBadgeLabel}
+          showRatingLabel={true}
+          maxRatingStars={maxRatingStars}
+          fieldLabelSize={fieldLabelSize}
+        />
+      )}
       {/*<ReadStatusTag readStatus={readStatus} />*/}
       {tag}
     </div>
