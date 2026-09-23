@@ -5,9 +5,11 @@ import { Field } from "../components/common/Field.jsx";
 import { RatingBadge } from "../components/common/RatingBadge.jsx";
 import { SideMenu } from "../components/common/SideMenu.jsx";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function AddBook() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
       <SideMenu isOpen={sideMenuOpen} onClose={() => setSideMenuOpen(false)} />
@@ -19,7 +21,7 @@ export function AddBook() {
             <Button variant="iconOnly" icon={<Menu />} className="px-0" onClick={() => setSideMenuOpen(true) }/>
           }
           actionsRight={
-            <Button variant="iconOnly" icon={<X />} className="px-0" />
+            <Button variant="iconOnly" icon={<X />} className="px-0" onClick={() => navigate("/")}/>
           }
         />
       </div>
@@ -99,7 +101,7 @@ export function AddBook() {
           />
         </div>
         <div className="flex justify-between items-center mt-3">
-          <Button variant="secondary" label="Cancel" />
+          <Button variant="secondary" type="button" label="Cancel" onClick={() => navigate("/")}/>
           <Button
             variant="primary"
             label="Save Book"
