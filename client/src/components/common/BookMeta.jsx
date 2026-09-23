@@ -27,8 +27,8 @@ export function BookMeta({ bookTitle, bookAuthors, className, size = "md" /*sm, 
     : bookAuthors;
 
   return (
-    <div className={cn("inline-flex min-w-0 flex-col", styles.gap, className)}>
-      <span className={cn("line-clamp-2 pb-1.5", styles.title)}>
+    <div className={cn("inline-flex min-w-0 w-full flex-col pr-1", styles.gap, className)}>
+      <span className={cn("truncate leading-tight overflow-hidden", styles.title)}>
         {bookTitle}
       </span>
       <span className={cn("line-clamp-1", styles.author)}>

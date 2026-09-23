@@ -22,7 +22,7 @@ export function BookInfo({ book, rating, tag, className }) {
   return (
     <div
       className={cn(
-        "inline-flex min-w-0 min-h-0 flex-col justify-start items-start gap-1.5",
+        "inline-flex min-w-0 w-full min-h-0 flex-col justify-start items-start gap-1.5",
         className,
       )}
     >

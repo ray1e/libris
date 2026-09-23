@@ -38,7 +38,7 @@ export function Dashboard() {
     setSearch(event.target.value);
   };
   return (
-    <div className="relative overflow-hidden h-full w-full flex flex-col gap-3 px-4">
+    <div className="relative overflow-hidden h-dvh w-full flex flex-col gap-3 px-4">
       {/*side menu*/}
 
       <SideMenu isOpen={sideMenuOpen} onClose={() => setSideMenuOpen(false)} />
@@ -110,7 +110,7 @@ export function Dashboard() {
         </div>
       </div>
       {/*Main-section */}
-      <main className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 gap-4 scrollbar-thumb-surface-action-secondary scrollbar-thin md:scrollbar-thin scroll-ml-1">
+      <main className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 gap-4 content-start auto-rows-max scrollbar-thumb-surface-action-secondary scrollbar-thin md:scrollbar-thin scroll-ml-1">
         {data?.success &&
           filteredData.map((currentBook) => (
             <BookCard

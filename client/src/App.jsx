@@ -9,9 +9,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MobileLayout><Dashboard/></MobileLayout>}/>
-        <Route path="/addbook" element={<MobileLayout><AddBook/></MobileLayout>}/>
-        <Route path="/mybook" element={<MobileLayout><BookView/></MobileLayout>}/>
+        <Route path="/" element={<Dashboard/>}/>
+        <Route path="/addbook" element={<AddBook/>}/>
+        <Route path="/mybook" element={<BookView/>}/>
       </Routes>
     </>
   );
