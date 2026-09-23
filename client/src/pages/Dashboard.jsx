@@ -6,13 +6,15 @@ import { SideMenu } from "../components/common/SideMenu.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { useState } from "react";
 import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
-//import { fetchAllBooks } from "../services/api.js";
 import { useGetAllBooksQuery } from "../services/api.js";
+import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const { data, error, isLoading, isSuccess } = useGetAllBooksQuery();
+
   console.log(data);
+  const navigate = useNavigate();
   return (
     <div className="relative overflow-hidden h-full w-full flex flex-col gap-3 px-4">
       {/*side menu*/}
@@ -37,6 +39,7 @@ export function Dashboard() {
               leftIcon={<Plus />}
               label="Add Book"
               className="px-2"
+              onClick={() => navigate("/addbook")}
             />
           }
         />
@@ -79,7 +82,7 @@ export function Dashboard() {
                 size: "sm",
               }}
               imageLink="https://picsum.photos/id/1/300/400"
-              bookTag={<ReadStatusTag readStatus={currentBook.readStatus}/>}
+              bookTag={<ReadStatusTag readStatus={currentBook.readStatus} />}
             />
           ))}
       </main>
