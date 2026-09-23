@@ -11,10 +11,20 @@ import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const [search, setSeaarch] = useState("");
   const { data, error, isLoading, isSuccess } = useGetAllBooksQuery();
+
+  const filteredData = (data?.data ?? []).filter((bookData) =>
+    bookData.title.toLowerCase().includes(search.toLowerCase()),
+  );
+  console.log(`this is ${filteredData}`);
 
   console.log(data);
   const navigate = useNavigate();
+
+  const handleInputOnChange = (event) => {
+    setSeaarch(event.target.value);
+  };
   return (
     <div className="relative overflow-hidden h-full w-full flex flex-col gap-3 px-4">
       {/*side menu*/}
@@ -53,6 +63,7 @@ export function Dashboard() {
             leftIcon={<Search size="12" />}
             placeholderText="Search books..."
             className="w-64 h-9"
+            onChange={handleInputOnChange}
           />
           <Button variant="secondary" label="Filter" leftIcon={<Funnel />} />
         </div>
@@ -67,7 +78,7 @@ export function Dashboard() {
       {/*Main-section */}
       <main className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 gap-4 scrollbar-thumb-surface-action-secondary scrollbar-thin md:scrollbar-thin scroll-ml-1">
         {data?.success &&
-          data.data.map((currentBook) => (
+          filteredData.map((currentBook) => (
             <BookCard
               key={currentBook._id}
               book={{
