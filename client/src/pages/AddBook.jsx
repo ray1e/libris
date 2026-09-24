@@ -12,12 +12,11 @@ export function AddBook() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState("");
-  const [readStatus, setReadStatus] = useState("");
+  const [readStatus, setReadStatus] = useState("to-read");
   const [finishedDate, setFinishedDate] = useState("");
   const [rating, setRating] = useState("");
 
   const [addBook] = useAddBookMutation();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -117,16 +116,17 @@ export function AddBook() {
             fieldType="required"
             inputType="date"
             placeholderText="Select date"
-            
             onChange={(e) => setFinishedDate(e.target.value)}
           />
-          <RatingBadge
-            labelText="Rating"
-            ratingReadOnly={false}
-            ratingValue={rating}
-            ratingSize="md"
-            onRatingChange={(selectedRating) => setRating(selectedRating)}
-          />
+          {readStatus !== "to-read" && (
+            <RatingBadge
+              labelText="Rating"
+              ratingReadOnly={false}
+              ratingValue={rating}
+              ratingSize="md"
+              onRatingChange={(selectedRating) => setRating(selectedRating)}
+            />
+          )}
           <Field
             labelText="Genre"
             fieldType="optional"
