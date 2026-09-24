@@ -13,7 +13,7 @@ const rawBookObject = z.object({
   ),
   readStatus: z.enum(["to-read", "reading", "finished"]),
   finishedDate: z.coerce.date().nullable().optional(),
-  rating: z.coerce.number().min(1).max(5).optional(),
+  rating: z.coerce.number().min(1).max(5).optional(), //optional=can be undefined
   coverImage: z.string().trim().optional(),
 });
 

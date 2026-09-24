@@ -1,4 +1,4 @@
-import { Calendar, Menu, Upload, X } from "lucide-react";
+import { Menu, Upload, X } from "lucide-react";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { Button } from "../components/common/Button.jsx";
 import { Field } from "../components/common/Field.jsx";
@@ -22,11 +22,14 @@ export function AddBook() {
     e.preventDefault();
 
     const bookFormData = {
-      title: title,
-      authors: authors,
-      readStatus: readStatus,
-      finishedDate: finishedDate,
-      rating: Number(rating),
+      title: title.trim(),
+      authors,
+      readStatus,
+      finishedDate: finishedDate || null,
+      rating:
+        rating !== "" && rating !== null && !isNaN(rating)
+          ? Number(rating)
+          : null,
     };
 
     try {
@@ -111,13 +114,15 @@ export function AddBook() {
             <option value="finished">completed</option>
             <option value="reading">reading</option>
           </Field>
-          <Field
-            labelText="Date Finished"
-            fieldType="required"
-            inputType="date"
-            placeholderText="Select date"
-            onChange={(e) => setFinishedDate(e.target.value)}
-          />
+          {readStatus === "finished" && (
+            <Field
+              labelText="Date Finished"
+              fieldType="required"
+              inputType="date"
+              placeholderText="Select date"
+              onChange={(e) => setFinishedDate(e.target.value)}
+            />
+          )}
           {readStatus !== "to-read" && (
             <RatingBadge
               labelText="Rating"
