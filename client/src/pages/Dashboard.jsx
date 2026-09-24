@@ -40,7 +40,7 @@ export function Dashboard() {
     setSearch(event.target.value);
   };
   return (
-    <div className="relative overflow-hidden h-dvh w-full flex flex-col gap-3 px-4">
+    <div className="relative overflow-hidden h-dvh w-full flex flex-col gap-3 px-4 bg-surface-page pb-2">
       {/*side menu*/}
 
       <SideMenu isOpen={sideMenuOpen} onClose={() => setSideMenuOpen(false)} />

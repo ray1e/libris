@@ -42,7 +42,7 @@ export function AddBook() {
 
   const navigate = useNavigate();
   return (
-    <div className="relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
+    <div className="pb-2 bg-surface-page relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
       <SideMenu isOpen={sideMenuOpen} onClose={() => setSideMenuOpen(false)} />
       {/*Header */}
       <div className="pt-2 shrink-0 pb-1">

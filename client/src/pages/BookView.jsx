@@ -5,6 +5,7 @@ import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { ChevronLeft, Ellipse, Ellipsis } from "lucide-react";
 import { useGetBookQuery } from "../services/booksApi.js";
+import { formatDate } from "../utils/dateFormatter.js";
 
 export function BookView() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export function BookView() {
   const {data} = useGetBookQuery(id);
   const book = data?.data;
   return (
-    <div className=" relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
+    <div className="relative w-full flex flex-col gap-4 h-full overflow-hidden px-4 pb-2 bg-surface-page">
       {/*Header-section*/}
       <div className="pt-2 shrink-0 pb-1">
         <TopAppBar
@@ -56,13 +57,13 @@ export function BookView() {
           />
           <div className="flex  gap-4">
             <div className="flex flex-col gap-3 body-xsm-semi-bold">
-              <span>Date Finished</span>
+              {book?.readStatus ==="finished" && <span>Date Finished</span>}
               <span>Pages</span>
               <span>Genre</span>
             </div>
 
             <div className="flex flex-col gap-3 body-xsm">
-              <span>{book?.finishedDate}</span>
+              {book?.readStatus ==="finished" && <span>{formatDate(book?.finishedDate)}</span>}
               <span>330</span>
               <span>Self-help</span>
             </div>
