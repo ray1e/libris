@@ -6,6 +6,7 @@ import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { ChevronLeft, Ellipse, Ellipsis } from "lucide-react";
 import { useGetBookQuery } from "../services/booksApi.js";
 import { formatDate } from "../utils/dateFormatter.js";
+import { Link } from "react-router-dom";
 
 export function BookView() {
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ export function BookView() {
           }
           actionsRight={
             <div className="flex flex-icon items-center justify-center gap-3">
-              <Button variant="secondary" label="Edit" className="px-3" />
+              <Link to={`/mybook/${id}/edit`}><Button variant="secondary" label="Edit" className="px-3" /></Link>
+              
               <Button variant="iconOnly" icon={<Ellipsis />} />
             </div>
           }

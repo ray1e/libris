@@ -3,6 +3,7 @@ import { Dashboard } from "./pages/Dashboard.jsx";
 import { Route, Routes } from "react-router-dom";
 import { AddBook } from "./pages/AddBook.jsx";
 import { BookView } from "./pages/BookView.jsx";
+import { EditBook } from "./pages/EditBook.jsx";
 
 function App() {
   //const [rating, setRating] = useState(0);
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Dashboard/>}/>
         <Route path="/addbook" element={<AddBook/>}/>
         <Route path="/mybook/:id" element={<BookView/>}/>
+        <Route path="/mybook/:id/edit" element={<EditBook/>}/>
       </Routes>
     </>
   );
