@@ -8,6 +8,7 @@ import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
 import { SideMenu } from "../components/common/SideMenu.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { useGetAllBooksQuery } from "../services/booksApi.js";
+import { Link } from "react-router-dom";
 
 export function Dashboard() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -15,23 +16,24 @@ export function Dashboard() {
   const { data, error, isLoading, isSuccess } = useGetAllBooksQuery();
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const filteredData = (data?.data ?? []).filter((bookData) => {
-    const matchTitle = bookData.title
-      ?.trim().toLowerCase()
-      .includes(search.trim().toLowerCase());
-      console.log(`Title returned ${matchTitle}`)
-    const matchAuthor = bookData.authors?.some((author) => {
-      return author.trim().toLowerCase().includes(search.trim().toLowerCase());
+  const filteredData = (data?.data ?? [])
+    .filter((bookData) => {
+      const matchTitle = bookData.title
+        ?.trim()
+        .toLowerCase()
+        .includes(search.trim().toLowerCase());
+      const matchAuthor = bookData.authors?.some((author) => {
+        return author
+          .trim()
+          .toLowerCase()
+          .includes(search.trim().toLowerCase());
+      });
+      return matchTitle || matchAuthor;
+    })
+    .filter((filteredBook) => {
+      return activeFilter === "All" || filteredBook.readStatus === activeFilter;
     });
-    return matchTitle || matchAuthor;
-  }).filter((filteredBook) => {
-    return(
-      activeFilter === "All" ||
-      filteredBook.readStatus === activeFilter
-    )
-  })
 
-  console.log(data);
   const navigate = useNavigate();
 
   const handleInputOnChange = (event) => {
@@ -81,54 +83,58 @@ export function Dashboard() {
         </div>
         {/*filter bar */}
         <div className="flex justify-around items-center">
-          <Button 
-          variant="filter" 
-          isSelected={activeFilter === "All"} 
-          onClick={() => setActiveFilter("All")}
-          label="All" 
-          className="px-3"
-           />
+          <Button
+            variant="filter"
+            isSelected={activeFilter === "All"}
+            onClick={() => setActiveFilter("All")}
+            label="All"
+            className="px-3"
+          />
 
-          <Button 
-          variant="filter" 
-          isSelected={activeFilter === "reading"}
-          onClick={() => setActiveFilter("reading")}
-          label="reading" />
+          <Button
+            variant="filter"
+            isSelected={activeFilter === "reading"}
+            onClick={() => setActiveFilter("reading")}
+            label="reading"
+          />
 
-          <Button 
-          variant="filter" 
-          label="to-read"
-          isSelected={activeFilter === "to-read"}
-          onClick={() => setActiveFilter("to-read")} />
+          <Button
+            variant="filter"
+            label="to-read"
+            isSelected={activeFilter === "to-read"}
+            onClick={() => setActiveFilter("to-read")}
+          />
 
-          <Button 
-          variant="filter" 
-          label="finished"
-          isSelected={activeFilter === "finished"} 
-          onClick={() => setActiveFilter("finished")}/>
-          
+          <Button
+            variant="filter"
+            label="finished"
+            isSelected={activeFilter === "finished"}
+            onClick={() => setActiveFilter("finished")}
+          />
         </div>
       </div>
       {/*Main-section */}
       <main className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 gap-4 content-start auto-rows-max scrollbar-thumb-surface-action-secondary scrollbar-thin md:scrollbar-thin scroll-ml-1">
         {data?.success &&
           filteredData.map((currentBook) => (
-            <BookCard
-              key={currentBook._id}
-              book={{
-                title: currentBook.title,
-                authors: currentBook.authors,
-                metaSize: "sm",
-                readStatus: currentBook.readStatus,
-              }}
-              rating={{
-                value: currentBook?.rating,
-                readOnly: true,
-                size: "sm",
-              }}
-              imageLink="https://picsum.photos/id/1/300/400"
-              bookTag={<ReadStatusTag readStatus={currentBook.readStatus} />}
-            />
+            <Link key={currentBook._id} to={`/mybook/${currentBook._id}`}>
+              <BookCard
+                
+                book={{
+                  title: currentBook.title,
+                  authors: currentBook.authors,
+                  metaSize: "sm",
+                  readStatus: currentBook.readStatus,
+                }}
+                rating={{
+                  value: currentBook?.rating,
+                  readOnly: true,
+                  size: "sm",
+                }}
+                imageLink="https://picsum.photos/id/1/300/400"
+                bookTag={<ReadStatusTag readStatus={currentBook.readStatus} />}
+              />
+            </Link>
           ))}
       </main>
     </div>

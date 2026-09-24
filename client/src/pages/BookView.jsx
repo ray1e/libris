@@ -1,12 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BookInfo } from "../components/common/BookInfo.jsx";
 import { Button } from "../components/common/Button.jsx";
 import { ReadStatusTag } from "../components/common/ReadStatusTag.jsx";
 import { TopAppBar } from "../components/common/TopAppBar.jsx";
 import { ChevronLeft, Ellipse, Ellipsis } from "lucide-react";
+import { useGetBookQuery } from "../services/booksApi.js";
 
 export function BookView() {
   const navigate = useNavigate();
+  const {id} = useParams();
+  const {data} = useGetBookQuery(id);
+  const book = data?.data;
   return (
     <div className=" relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
       {/*Header-section*/}
@@ -42,25 +46,23 @@ export function BookView() {
 
           <BookInfo
             book={{
-              title: "Atomic Habits",
-              authors: "Cal Newport",
+              title: book?.title,
+              authors: book?.authors,
               metaSize: "md",
             }}
-            rating={{ value: 5, readOnly: true, size: "sm" }}
+            rating={{ value: book?.rating, readOnly: true, size: "sm" }}
             className="pt-2 gap-3"
             tag={<ReadStatusTag className="w-2/3" />}
           />
           <div className="flex  gap-4">
             <div className="flex flex-col gap-3 body-xsm-semi-bold">
-              <span>Date Started</span>
               <span>Date Finished</span>
               <span>Pages</span>
               <span>Genre</span>
             </div>
 
             <div className="flex flex-col gap-3 body-xsm">
-              <span>Jan 16, 2024</span>
-              <span>Feb 2, 2024</span>
+              <span>{book?.finishedDate}</span>
               <span>330</span>
               <span>Self-help</span>
             </div>
