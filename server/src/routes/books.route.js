@@ -13,11 +13,16 @@ import {
   deleteBook,
   updateBook,
   getAllBooks,
+  getBook,
 } from "../controllers/book/books.controller.js";
 
 const bookRouter = Router();
 
+//get all books
 bookRouter.get("/", getAllBooks);
+
+//get a book
+bookRouter.get("/:bookId", validateIdParams(idParamsSchema("bookId")), getBook);
 
 //add a book
 bookRouter.post("/", validateReqBody(createBookSchema), addBook);

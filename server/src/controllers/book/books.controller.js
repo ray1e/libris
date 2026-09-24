@@ -3,6 +3,7 @@ import {
   deleteBook as deleteBookService,
   updateBook as updateBookService,
   getAllBooks as getAllBooksService,
+  getBook as getBookService,
 } from "../../services/book.services.js";
 
 export const addBook = async (req, res, next) => {
@@ -56,6 +57,20 @@ export const getAllBooks = async (req, res, next) => {
       success: true,
       message: "Books retrieved successfully",
       data: books,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getBook = async (req, res, next) => {
+  try {
+    const { bookId } = req.params;
+    const book = await getBookService(bookId);
+    res.status(200).json({
+      success: true,
+      message: "Book retrieved successfully",
+      data: book,
     });
   } catch (error) {
     next(error);

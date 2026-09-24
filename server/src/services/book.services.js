@@ -51,4 +51,9 @@ export const updateBook = async (bookData, bookId) => {
 export const getAllBooks = async () => {
   const books = await BookModel.find().lean();
   return books;
-}
+};
+
+export const getBook = async (bookId) => {
+  const book = await BookModel.findById(bookId).lean();
+  return book;
+};
