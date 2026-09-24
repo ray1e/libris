@@ -11,7 +11,7 @@ export function StarRating({
 }) {
   const [hoverRating, setHoverRating] = useState(0);
 
-  //differeb=nt sizes of the stars
+  //different sizes of the stars
   const sizeMap = {
     sm: "size-4",
     md: "size-5",

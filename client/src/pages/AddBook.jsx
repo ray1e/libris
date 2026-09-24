@@ -6,9 +6,38 @@ import { RatingBadge } from "../components/common/RatingBadge.jsx";
 import { SideMenu } from "../components/common/SideMenu.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAddBookMutation } from "../services/booksApi.js";
 
 export function AddBook() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [authors, setAuthors] = useState("");
+  const [readStatus, setReadStatus] = useState("");
+  const [finishedDate, setFinishedDate] = useState("");
+  const [rating, setRating] = useState("");
+
+  const [addBook] = useAddBookMutation();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const bookFormData = {
+      title: title,
+      authors: authors,
+      readStatus: readStatus,
+      finishedDate: finishedDate,
+      rating: Number(rating),
+    };
+
+    try {
+      const response = await addBook(bookFormData).unwrap();
+      console.log(response);
+    } catch (error) {
+      console.error("Error creating book", error);
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <div className="relative w-full flex flex-col gap-4 h-full overflow-hidden px-4">
@@ -18,10 +47,20 @@ export function AddBook() {
         <TopAppBar
           title="Add New Book"
           actionsLeft={
-            <Button variant="iconOnly" icon={<Menu />} className="px-0" onClick={() => setSideMenuOpen(true) }/>
+            <Button
+              variant="iconOnly"
+              icon={<Menu />}
+              className="px-0"
+              onClick={() => setSideMenuOpen(true)}
+            />
           }
           actionsRight={
-            <Button variant="iconOnly" icon={<X />} className="px-0" onClick={() => navigate("/")}/>
+            <Button
+              variant="iconOnly"
+              icon={<X />}
+              className="px-0"
+              onClick={() => navigate("/")}
+            />
           }
         />
       </div>
@@ -52,12 +91,14 @@ export function AddBook() {
             fieldType="required"
             placeholderText="Enter book title"
             inputType="text"
+            onChange={(e) => setTitle(e.target.value)}
           />
           <Field
             labelText="Author"
             fieldType="required"
             placeholderText="Enter book author(s)"
             inputType="text"
+            onChange={(e) => setAuthors(e.target.value)}
           />
           <Field
             labelText="Status"
@@ -65,22 +106,26 @@ export function AddBook() {
             placeholderText="Enter book author(s)"
             inputType="text"
             as="select"
+            onChange={(e) => setReadStatus(e.target.value)}
           >
-            <option value="want to read">want to read</option>
-            <option value="completed">completed</option>
+            <option value="to-read">want to read</option>
+            <option value="finished">completed</option>
             <option value="reading">reading</option>
           </Field>
           <Field
             labelText="Date Finished"
             fieldType="required"
-            placeholderText="Enter book title"
-            rightIcon={<Calendar />}
+            inputType="date"
+            placeholderText="Select date"
+            
+            onChange={(e) => setFinishedDate(e.target.value)}
           />
           <RatingBadge
             labelText="Rating"
             ratingReadOnly={false}
-            ratingValue={3}
+            ratingValue={rating}
             ratingSize="md"
+            onRatingChange={(selectedRating) => setRating(selectedRating)}
           />
           <Field
             labelText="Genre"
@@ -101,10 +146,16 @@ export function AddBook() {
           />
         </div>
         <div className="flex justify-between items-center mt-3">
-          <Button variant="secondary" type="button" label="Cancel" onClick={() => navigate("/")}/>
+          <Button
+            variant="secondary"
+            type="button"
+            label="Cancel"
+            onClick={() => navigate("/")}
+          />
           <Button
             variant="primary"
             label="Save Book"
+            onClick={handleSubmit}
             className="px-3"
             type="submit"
           />
